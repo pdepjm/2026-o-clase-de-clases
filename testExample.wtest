@@ -1,9 +1,21 @@
-import example.pepita
+import usuarios.*
 
-describe "group of tests for pepita" {
+describe "Usuarios" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "Un usuario es pizzaficionado cuando tiene mas de 1000 crazyPizzaPoints" {
+    var pizzaficionado = new Usuario(nombre ="Pizzaficionado")
+    pizzaficionado.sumarPuntos(10000000000)
+    assert.that(pizzaficionado.esPizzaficionado())
   }
 
+    test "Un usuario NO es pizzaficionado cuando tiene menos de 1000 crazyPizzaPoints" {
+        var noPizzaficionado = new Usuario(nombre ="noPizzaficionado")
+        assert.notThat(noPizzaficionado.esPizzaficionado())
+    }
+
+    test "Un usuario NO es pizzaficionado cuando tiene exactamente 1000 crazyPizzaPoints" {
+        var noPizzaficionado = new Usuario(nombre ="noPizzaficionado")
+        noPizzaficionado.sumarPuntos(1000)
+        assert.notThat(noPizzaficionado.esPizzaficionado())
+    }
 }

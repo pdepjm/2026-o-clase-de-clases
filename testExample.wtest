@@ -1,3 +1,5 @@
+import sistema.*
+import pizzas.*
 import usuarios.*
 
 describe "Usuarios" {
@@ -17,5 +19,10 @@ describe "Usuarios" {
         var noPizzaficionado = new Usuario(nombre ="noPizzaficionado")
         noPizzaficionado.sumarPuntos(1000)
         assert.notThat(noPizzaficionado.esPizzaficionado())
+    }
+
+    test "No se puede vender una pizza a un usuario que no esta registrado" {
+      var usuarioNoRegistrado = new Usuario(nombre="Pepita", metodoDePago = pdePay)
+      assert.throwsExceptionWithMessage("No se puede vender a un usuario que no conozco", {sistema.venderPizza(usuarioNoRegistrado, jamonYMorron)})
     }
 }
